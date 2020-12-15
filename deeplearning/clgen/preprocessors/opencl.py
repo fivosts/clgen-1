@@ -15,19 +15,17 @@
 """Preprocessor passes for the OpenCL programming language."""
 import typing
 
+from deeplearning.clgen import environment
 from deeplearning.clgen.preprocessors import clang
 from deeplearning.clgen.preprocessors import normalizer
 from deeplearning.clgen.preprocessors import public
 from labm8.py import app
-from labm8.py import bazelutil
 
 FLAGS = app.FLAGS
 
-LIBCLC = bazelutil.DataPath("phd/third_party/libclc/generic/include")
-OPENCL_H = bazelutil.DataPath("phd/deeplearning/clgen/data/include/opencl.h")
-SHIMFILE = bazelutil.DataPath(
-  "phd/deeplearning/clgen/data/include/opencl-shim.h"
-)
+LIBCLC = environment.LIBCLC
+OPENCL_H = environment.OPENCL_H
+SHIMFILE = environment.SHIMFILE
 
 
 def GetClangArgs(use_shim: bool) -> typing.List[str]:

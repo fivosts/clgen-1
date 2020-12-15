@@ -38,7 +38,6 @@ from deeplearning.clgen.dashboard import dashboard_db
 from deeplearning.clgen.preprocessors import preprocessors
 from deeplearning.clgen.proto import corpus_pb2
 from labm8.py import app
-from labm8.py import bazelutil
 from labm8.py import crypto
 from labm8.py import hashcache
 from labm8.py import humanize
@@ -482,7 +481,6 @@ def ExpandConfigPath(path: str, path_prefix: str = None) -> pathlib.Path:
   # Set a useful variable for expansion.
   if "HOME" not in os.environ:
     os.environ["HOME"] = str(pathlib.Path("~").expanduser())
-  os.environ["BAZEL_RUNFILES"] = str(bazelutil.DataPath("."))
   return (
     pathlib.Path(os.path.expandvars((path_prefix or "") + path))
     .expanduser()

@@ -19,15 +19,14 @@ import tempfile
 import typing
 
 from deeplearning.clgen import errors
+from deeplearning.clgen import environment
 from labm8.py import app
 from labm8.py import bazelutil
 
 FLAGS = app.FLAGS
 
 # Path of the clang rewriter binary.
-CLGEN_REWRITER = bazelutil.DataPath(
-  "phd/deeplearning/clgen/preprocessors/clang_rewriter"
-)
+CLGEN_REWRITER = environment.CLGEN_REWRITER
 
 # On Linux we must preload the LLVM libraries.
 CLGEN_REWRITER_ENV = os.environ.copy()
@@ -35,6 +34,10 @@ if bazelutil.DataPath("llvm_linux", must_exist=False).is_dir():
   libclang = bazelutil.DataPath("llvm_linux/lib/libclang.so")
   liblto = bazelutil.DataPath("llvm_linux/lib/libLTO.so")
   CLGEN_REWRITER_ENV["LD_PRELOAD"] = f"{libclang}:{liblto}"
+else:
+  libclang = os.path.join(environment.LLVM, "lib/libclang.so")
+  liblto   = os.path.join(environment.LLVM, "lib/libLTO.so")
+  CLANG_REWRITER_ENV["LD_PRELOAD"] = f"{libclang}:{liblto}"
 
 
 def NormalizeIdentifiers(

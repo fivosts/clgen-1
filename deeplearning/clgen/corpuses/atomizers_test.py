@@ -14,10 +14,12 @@
 # along with clgen.  If not, see <https://www.gnu.org/licenses/>.
 """Unit tests for //deeplearning/clgen/corpuses:atomizers."""
 import json
+import os
 import pathlib
 import tempfile
 
 import deeplearning.clgen.errors
+from deeplearning.clgen import environment
 from deeplearning.clgen.corpuses import atomizers
 from labm8.py import app
 from labm8.py import bazelutil
@@ -28,9 +30,14 @@ FLAGS = app.FLAGS
 pytest_plugins = ["deeplearning.clgen.tests.fixtures"]
 
 # The set of multichar tokens for the OpenCL programming language.
-TOKEN_LISTS = json.loads(
-  bazelutil.DataString("phd/deeplearning/clgen/corpuses/token_lists.json")
-)
+try:
+  TOKEN_LISTS = json.loads(
+    bazelutil.DataString("phd/deeplearning/clgen/corpuses/token_lists.json")
+  )
+except Exception:
+  TOKEN_LISTS = json.loads(
+    os.path.join(os.getcwd(), "deeplearning/clgen/corpuses/token_lists.json")
+  )
 
 OPENCL_ATOMS = TOKEN_LISTS["opencl"]["tokens"]
 

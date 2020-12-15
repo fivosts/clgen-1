@@ -8,10 +8,10 @@ import flask_sqlalchemy
 import portpicker
 import sqlalchemy as sql
 
+from deeplearning.clgen import environment
 from deeplearning.clgen.corpuses import encoded
 from deeplearning.clgen.dashboard import dashboard_db
 from labm8.py import app
-from labm8.py import bazelutil
 from labm8.py import humanize
 
 FLAGS = app.FLAGS
@@ -26,10 +26,8 @@ app.DEFINE_integer(
 
 flask_app = flask.Flask(
   __name__,
-  template_folder=bazelutil.DataPath(
-    "phd/deeplearning/clgen/dashboard/templates"
-  ),
-  static_folder=bazelutil.DataPath("phd/deeplearning/clgen/dashboard/static"),
+  template_folder=environment.DASHBOARD_TEMPLATES,
+  static_folder=environment.DASHBOARD_STATIC,
 )
 
 # Get URI of the the dashboard database.

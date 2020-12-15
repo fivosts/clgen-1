@@ -31,7 +31,7 @@ import typing
 
 from compilers.llvm import llvm
 from labm8.py import app
-from labm8.py import bazelutil
+from deeplearning.clgen import environment
 
 FLAGS = app.FLAGS
 
@@ -45,7 +45,7 @@ app.DEFINE_integer(
 )
 
 # Path to clang-format binary.
-CLANG_FORMAT = bazelutil.DataPath("phd/third_party/llvm/clang-format")
+CLANG_FORMAT = environment.CLANG_FORMAT
 
 
 class ClangFormatException(llvm.LlvmError):

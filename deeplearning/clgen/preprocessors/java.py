@@ -32,7 +32,8 @@ CLASS_NAME_RE = re.compile(r"public\s+class\s+(\w+)")
 
 # Path to the compiled java rewriter.
 JAVA_REWRITER = bazelutil.DataPath(
-  "phd/deeplearning/clgen/preprocessors/JavaRewriter"
+  "phd/deeplearning/clgen/preprocessors/JavaRewriter",
+  must_exist = False
 )
 
 

@@ -31,7 +31,8 @@ import typing
 
 from compilers.llvm import llvm
 from labm8.py import app
-from labm8.py import bazelutil
+
+from deeplearning.clgen import environment
 
 FLAGS = app.FLAGS
 
@@ -42,7 +43,7 @@ app.DEFINE_integer(
 )
 
 # Path to clang binary.
-CLANG = bazelutil.DataPath("phd/third_party/llvm/clang")
+CLANG = environment.CLANG
 
 # Valid optimization levels.
 OPTIMIZATION_LEVELS = {"-O0", "-O1", "-O2", "-O3", "-Ofast", "-Os", "-Oz"}
