@@ -34,6 +34,7 @@
 .pytest_cache
 __pycache__
 *_pb2.py
+clgen
 
 # LaTeX files from in-tree builds.
 /docs/**/*-blx.bib
