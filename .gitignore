@@ -13,6 +13,7 @@
 
 # Build system.
 /bazel-*
+/build
 
 # The "husky" package for pre-commit hooks is written in node.
 /node_modules
@@ -32,6 +33,7 @@
 .ipynb_checkpoints
 .pytest_cache
 __pycache__
+*_pb2.py
 
 # LaTeX files from in-tree builds.
 /docs/**/*-blx.bib
