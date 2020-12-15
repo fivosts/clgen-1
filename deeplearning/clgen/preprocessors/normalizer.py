@@ -35,8 +35,8 @@ if bazelutil.DataPath("llvm_linux", must_exist=False).is_dir():
   liblto = bazelutil.DataPath("llvm_linux/lib/libLTO.so")
   CLGEN_REWRITER_ENV["LD_PRELOAD"] = f"{libclang}:{liblto}"
 else:
-  libclang = os.path.join(environment.LLVM, "lib/libclang.so")
-  liblto   = os.path.join(environment.LLVM, "lib/libLTO.so")
+  libclang = os.path.join(environment.check_exists(os.environ['LLVM']), "lib/libclang.so")
+  liblto   = os.path.join(environment.check_exists(os.environ['LLVM']), "lib/libLTO.so")
   CLANG_REWRITER_ENV["LD_PRELOAD"] = f"{libclang}:{liblto}"
 
 
